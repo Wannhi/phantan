@@ -77,22 +77,22 @@ public class StdManagerImpl extends UnicastRemoteObject implements StdManagerInt
         return lhList;
     }
 
-    @Override
-    public List<Diem> getAllDiem() throws RemoteException {
-        List<Diem> dList = new ArrayList<>();
-        try {
-            PreparedStatement st = connection.prepareStatement("SELECT * FROM diem");
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Diem diem = new Diem(rs.getInt("mssv"), rs.getString("MaMh"), rs.getFloat("score"));
-                dList.add(diem);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RemoteException("Error fetching scores data.", e);
-        }
-        return dList;
-    }
+ //   @Override
+//    public List<Diem> getAllDiem() throws RemoteException {
+//        List<Diem> dList = new ArrayList<>();
+//        try {
+//            PreparedStatement st = connection.prepareStatement("SELECT * FROM diem");
+//            ResultSet rs = st.executeQuery();
+//            while (rs.next()) {
+//                Diem diem = new Diem(rs.getInt("mssv"), rs.getString("MaMh"), rs.getFloat("score"));
+//                dList.add(diem);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw new RemoteException("Error fetching scores data.", e);
+//        }
+//        return dList;
+//    }
 
     @Override
     public List<MonHoc> getAllMonHoc() throws RemoteException {
@@ -159,21 +159,21 @@ public class StdManagerImpl extends UnicastRemoteObject implements StdManagerInt
         return null;
     }
 
-    @Override
-    public Diem findDiem(int mssv) throws RemoteException {
-        try {
-            PreparedStatement st = connection.prepareStatement("SELECT * FROM diem WHERE mssv=?");
-            st.setInt(1, mssv);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                return new Diem(rs.getInt("mssv"), rs.getString("MaMH"), rs.getFloat("score"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RemoteException("Error finding score for student with ID: " + mssv, e);
-        }
-        return null;
-    }
+//    @Override
+//    public Diem findDiem(int mssv) throws RemoteException {
+//        try {
+//            PreparedStatement st = connection.prepareStatement("SELECT * FROM diem WHERE mssv=?");
+//            st.setInt(1, mssv);
+//            ResultSet rs = st.executeQuery();
+//            if (rs.next()) {
+//                return new Diem(rs.getInt("mssv"), rs.getString("MaMH"), rs.getFloat("score"));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw new RemoteException("Error finding score for student with ID: " + mssv, e);
+//        }
+//        return null;
+//    }
 
     @Override
     public boolean addSinhVien(SinhVien sinhvien) throws RemoteException {
@@ -219,20 +219,20 @@ public class StdManagerImpl extends UnicastRemoteObject implements StdManagerInt
         }
     }
 
-    @Override
-    public boolean addDiem(Diem diem) throws RemoteException {
-        try {
-            PreparedStatement st = connection.prepareStatement("INSERT INTO diem(mssv, MaMH, score) VALUES (?, ?, ?)");
-            st.setInt(1, diem.getMssv());
-            st.setString(2, diem.getMaMh());
-            st.setFloat(3, diem.getDiem());
-            int rowsAffected = st.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RemoteException("Error adding score.", e);
-        }
-    }
+//    @Override
+//    public boolean addDiem(Diem diem) throws RemoteException {
+//        try {
+//            PreparedStatement st = connection.prepareStatement("INSERT INTO diem(mssv, MaMH, score) VALUES (?, ?, ?)");
+//            st.setInt(1, diem.getMssv());
+//            st.setString(2, diem.getMaMh());
+//            st.setFloat(3, diem.getDiem());
+//            int rowsAffected = st.executeUpdate();
+//            return rowsAffected > 0;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw new RemoteException("Error adding score.", e);
+//        }
+//    }
 
     // Tương tự, các phương thức cập nhật và xóa cũng được viết tương tự.
 
@@ -280,20 +280,20 @@ public class StdManagerImpl extends UnicastRemoteObject implements StdManagerInt
         }
     }
 
-    @Override
-    public boolean updateDiem(Diem diem) throws RemoteException {
-        try {
-            PreparedStatement st = connection.prepareStatement("UPDATE diem SET score=? WHERE mssv=? AND MaMH=?");
-            st.setFloat(1, diem.getDiem());
-            st.setInt(2, diem.getMssv());
-            st.setString(3, diem.getMaMh());
-            int rowsAffected = st.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RemoteException("Error updating score.", e);
-        }
-    }
+//    @Override
+//    public boolean updateDiem(Diem diem) throws RemoteException {
+//        try {
+//            PreparedStatement st = connection.prepareStatement("UPDATE diem SET score=? WHERE mssv=? AND MaMH=?");
+//            st.setFloat(1, diem.getDiem());
+//            st.setInt(2, diem.getMssv());
+//            st.setString(3, diem.getMaMh());
+//            int rowsAffected = st.executeUpdate();
+//            return rowsAffected > 0;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw new RemoteException("Error updating score.", e);
+//        }
+//    }
 
     @Override
     public boolean deleteSinhVien(int mssv) throws RemoteException {
@@ -346,6 +346,34 @@ public class StdManagerImpl extends UnicastRemoteObject implements StdManagerInt
             throw new RemoteException("Error deleting score.", e);
         }
     }
+
+    
+    
+    
+    
+	@Override
+	public List<Diem> getAllDiem() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Diem findDiem(int mssv) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addDiem(Diem diem) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateDiem(Diem diem) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
     
 }
