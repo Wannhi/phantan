@@ -4,10 +4,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
-import object.Diem;
-import object.LopHoc;
-import object.MonHoc;
-import object.SinhVien;
+import enity.Diem;
+import enity.LopHoc;
+import enity.MonHoc;
+import enity.SinhVien;
 import server.StdManagerInterface;
 
 public class Client {
@@ -264,56 +264,56 @@ public class Client {
                         System.out.println("0. Quay lai");
                         int lhchoice = sc.nextInt();
                         switch (lhchoice) {
-                            case 1:
-                                System.out.println("Danh sach mon diem: ");
-                                System.out.printf("|%-6s|%-8s|%-6s|\n", "Mssv", "MaMH","Diem");
-                                for (Diem d : stdManagerInterface.getAllDiem()) {
-                                    System.out.printf("|%-6d|%-8s|%-6.2f|\n",d.getMssv(),d.getMaMh(),d.getDiem());
+                            // case 1:
+                            //     System.out.println("Danh sach mon diem: ");
+                            //     System.out.printf("|%-6s|%-8s|%-6s|\n", "Mssv", "MaMH","Diem");
+                            //     for (Diem d : stdManagerInterface.getAllDiem()) {
+                            //         System.out.printf("|%-6d|%-8s|%-6.2f|\n",d.getMssv(),d.getMaMh(),d.getDiem());
 
-                                }
-                                break;
+                            //     }
+                            //     break;
                             case 2:
-                                System.out.println("Nhap ma sinh vien");
-                                int mssv = sc.nextInt();
-                                Diem fd = stdManagerInterface.findDiem(mssv);
-                                if (fd != null) {
-                                    System.out.printf("|%-6s|%-8s|%-6s|\n", "Mssv", "MaMH","Diem");
-                                    System.out.printf("|%-6d|%-8s|%-6.2f|\n",fd.getMssv(),fd.getMaMh(),fd.getDiem());
+                                // System.out.println("Nhap ma sinh vien");
+                                // int mssv = sc.nextInt();
+                                // Diem fd = stdManagerInterface.findDiem(mssv);
+                                // if (fd != null) {
+                                //     System.out.printf("|%-6s|%-8s|%-6s|\n", "Mssv", "MaMH","Diem");
+                                //     System.out.printf("|%-6d|%-8s|%-6.2f|\n",fd.getMssv(),fd.getMaMh(),fd.getDiem());
 
-                                } else {
-                                    System.out.println("Khong tim thay diem");
-                                }
+                                // } else {
+                                //     System.out.println("Khong tim thay diem");
+                                // }
                                 break;
                             case 3:
-                                System.out.println("Nhap thong tin ");
-                                System.out.println("Mssv:");
-                                int msadd = sc.nextInt();
-                                sc.nextLine();
-                                System.out.println("MaMH:");
-                                String mmhadd = sc.nextLine();
-                                System.out.println("Diem:");
-                                float diemnew = sc.nextFloat();
-                                Diem dnew = new Diem(msadd, mmhadd, diemnew);
-                                stdManagerInterface.addDiem(dnew);
-                                break;
+                                // System.out.println("Nhap thong tin ");
+                                // System.out.println("Mssv:");
+                                // int msadd = sc.nextInt();
+                                // sc.nextLine();
+                                // System.out.println("MaMH:");
+                                // String mmhadd = sc.nextLine();
+                                // System.out.println("Diem:");
+                                // float diemnew = sc.nextFloat();
+                                // Diem dnew = new Diem(msadd, mmhadd, diemnew);
+                                // stdManagerInterface.addDiem(dnew);
+                                // break;
                             case 4:{
-                                System.out.println("Nhap ma sinh vien:");
-                                int fms = sc.nextInt();
-                                sc.nextLine();
-                                Diem ud = stdManagerInterface.findDiem(fms);
-                                sc.nextLine();
-                                if (ud != null) {
-                                    System.out.println("Nhap thong tin  can cap nhat");
-                                    System.out.println("Ten mon hoc:");
-                                    String uten = sc.nextLine();
-                                    System.out.println("Nhap diem: ");
-                                    float udiem = sc.nextFloat();
-                                    Diem dinew = new Diem(fms, uten, udiem);
-                                    stdManagerInterface.updateDiem(dinew);
-                                } else {
-                                    System.out.println("Khong tim thay diem");
-                                }
-                                break;
+                                // System.out.println("Nhap ma sinh vien:");
+                                // int fms = sc.nextInt();
+                                // sc.nextLine();
+                                // Diem ud = stdManagerInterface.findDiem(fms);
+                                // sc.nextLine();
+                                // if (ud != null) {
+                                //     System.out.println("Nhap thong tin  can cap nhat");
+                                //     System.out.println("Ten mon hoc:");
+                                //     String uten = sc.nextLine();
+                                //     System.out.println("Nhap diem: ");
+                                //     float udiem = sc.nextFloat();
+                                //     Diem dinew = new Diem(fms, uten, udiem);
+                                //     stdManagerInterface.updateDiem(dinew);
+                                // } else {
+                                //     System.out.println("Khong tim thay diem");
+                                // }
+                                // break;
                             }
                             case 5:{
                                 System.out.println("Nhap mssv");

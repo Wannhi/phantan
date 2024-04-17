@@ -4,10 +4,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import object.Diem;
-import object.LopHoc;
-import object.MonHoc;
-import object.SinhVien;
+import enity.Diem;
+import enity.LopHoc;
+import enity.MonHoc;
+import enity.SinhVien;
 
 public interface StdManagerInterface extends Remote{
     //Đọc dữ liệu sinh viên
