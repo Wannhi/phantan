@@ -42,7 +42,6 @@ public class suathongtinSV extends javax.swing.JFrame {
         panel2 = new java.awt.Panel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         panel4 = new java.awt.Panel();
@@ -110,20 +109,9 @@ public class suathongtinSV extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(119, 186, 87));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jButton4.setText("Quản lý điểm");
-        jButton4.setBorder(null);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         jButton5.setBackground(new java.awt.Color(119, 186, 87));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jButton5.setText("xóa thông tin sinh viên");
+        jButton5.setText("Xóa thông tin sinh viên");
         jButton5.setBorder(null);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -140,14 +128,14 @@ public class suathongtinSV extends javax.swing.JFrame {
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-					jButton6ActionPerformed(evt);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (NotBoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                    jButton6ActionPerformed(evt);
+                } catch (RemoteException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (NotBoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -159,7 +147,6 @@ public class suathongtinSV extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -176,8 +163,6 @@ public class suathongtinSV extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -352,12 +337,30 @@ public class suathongtinSV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            int mssv = Integer.parseInt(JOptionPane.showInputDialog("Nhập MSSV của sinh viên cần xóa: "));
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            StdManagerInterface stdManagerInterface = (StdManagerInterface) registry.lookup("studentmanager");
+            SinhVien SV = stdManagerInterface.findSinhVien(mssv);
+            if(SV != null)
+        {
+            if(stdManagerInterface.deleteSinhVien(mssv))
+            {
+                JOptionPane.showMessageDialog(null, "Đã xóa sinh viên thành công", "Xóa sinh viên", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        }
+        else{
+            JOptionPane.showConfirmDialog(null, "Không tìm thấy sinh viên với MSSV " + mssv, "Tìm sinh viên", JOptionPane.INFORMATION_MESSAGE);
+        }
+        } catch (RemoteException ex) {
+            Logger.getLogger(quanLySinhVien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(quanLySinhVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) throws RemoteException, NotBoundException {//GEN-FIRST:event_jButton6ActionPerformed
@@ -479,7 +482,6 @@ public class suathongtinSV extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
