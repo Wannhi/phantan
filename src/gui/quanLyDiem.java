@@ -5,6 +5,12 @@
  */
 package gui;
 
+/**
+ *
+ * @author Lenovo
+ */
+import java.rmi.AccessException;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -13,13 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import enity.LopHoc;
-import enity.SinhVien;
-import server.StdManagerInterface;
+import server.*;
+import enity.*;
 
 public class quanLyDiem extends javax.swing.JFrame {
     
