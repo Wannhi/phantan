@@ -11,18 +11,18 @@ import enity.LopHoc;
 import enity.MonHoc;
 import enity.SinhVien;
 
-import dao.connect_data;
-import dao.sinhvienDAO;
-import dao.lophocDAO;
-import dao.monhocDAO;
-//import dao.diemDAO;
+//import dao.connect_data;
+//import dao.sinhvienDAO;
+//import dao.lophocDAO;
+//import dao.monhocDAO;
+import dao.*;
 
 public class StdManagerImpl extends UnicastRemoteObject implements StdManagerInterface {
 	private Connection connection;
 	private sinhvienDAO sinhVienDAO;
     private lophocDAO lopHocDAO;
     private monhocDAO monHocDAO;
-//    private diemDAO diemDAO;
+   private diemDAO diemDAO;
 
 	protected StdManagerImpl() throws RemoteException, ClassCastException, SQLException {
 		try {
@@ -30,6 +30,7 @@ public class StdManagerImpl extends UnicastRemoteObject implements StdManagerInt
 			this.sinhVienDAO = new sinhvienDAO(connection);
         	this.monHocDAO = new monhocDAO(connection);
         	this.lopHocDAO = new lophocDAO(connection);
+                this.diemDAO = new diemDAO(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
@@ -150,12 +151,12 @@ public class StdManagerImpl extends UnicastRemoteObject implements StdManagerInt
 		return null;
 	}
 
-	@Override
-	public boolean addDiem(Diem diem) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+//	@Override
+//	public boolean addDiem(Diem diem) throws RemoteException {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//
 	@Override
 	public boolean updateDiem(Diem diem) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -168,6 +169,33 @@ public class StdManagerImpl extends UnicastRemoteObject implements StdManagerInt
 		return false;
 	}
 
+	@Override
+	public List<Diem> getStudentAndScoreBySubject(String TenMonHoc) throws RemoteException {
+		return diemDAO.getStudentAndScoreBySubject(TenMonHoc);
+		// TODO Auto-generated method stub
+                
+	}
 
+    @Override
+    public List<Diem> getStudentAndScoreByID(int mssv) throws RemoteException {
+        return diemDAO.getStudentAndScoreByID(mssv); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @Override
+    public boolean addDiem(Diem diem) throws RemoteException {
+       return diemDAO.addDiem(diem); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean updateDiem(String cotdiem, float diemmoi, int mssv, String MaMH) throws RemoteException {
+        return diemDAO.updateDiem(cotdiem, diemmoi, mssv, MaMH); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public float getScoreByIDandSubject(int mssv, String tencotDiem, String maMh) throws RemoteException {
+        return diemDAO.getScoreByIDandSubject(mssv, tencotDiem, maMh); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    
 }

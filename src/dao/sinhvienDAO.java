@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import enity.SinhVien;
+import enity.*;
 
 public class sinhvienDAO {
 
@@ -110,4 +110,5 @@ public class sinhvienDAO {
         return svList;
 	}
 	
+       
 }

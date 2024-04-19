@@ -32,7 +32,14 @@ public class quanLyDiem extends javax.swing.JFrame {
      * Creates new form mainFrame
      */
     public quanLyDiem(){
-        initComponents();
+        try {
+            initComponents();
+            loadSubjectIntoCombobox(jComboBox1);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(quanLyDiem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(quanLyDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -97,7 +104,7 @@ public class quanLyDiem extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel2.setBackground(new java.awt.Color(214,217,223,255));
+        panel2.setBackground(new java.awt.Color(96, 215, 103));
         panel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButton2.setBackground(new java.awt.Color(119, 186, 87));
@@ -132,14 +139,14 @@ public class quanLyDiem extends javax.swing.JFrame {
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    jButton6ActionPerformed(evt);
-                } catch (RemoteException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (NotBoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+					jButton6ActionPerformed(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NotBoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -164,10 +171,10 @@ public class quanLyDiem extends javax.swing.JFrame {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(317, Short.MAX_VALUE))
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hiển thị sinh viên", "Tất cả sinh viên" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hiển thị điểm" }));
         jComboBox1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jComboBox1FocusLost(evt);
@@ -188,6 +195,11 @@ public class quanLyDiem extends javax.swing.JFrame {
         });
 
         jTextField1.setText("Nhập ID sinh viên");
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+        });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -203,35 +215,25 @@ public class quanLyDiem extends javax.swing.JFrame {
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(123, 123, 123)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "MSSV", "Họ và Tên", "Năm sinh ", "Lớp"
-            }
-        ));
-        jTable1.setRowHeight(24);
         jScrollPane1.setViewportView(jTable1);
 
         jLayeredPane3.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -247,9 +249,9 @@ public class quanLyDiem extends javax.swing.JFrame {
         );
         jLayeredPane3Layout.setVerticalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
+            .addGroup(jLayeredPane3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -312,55 +314,53 @@ public class quanLyDiem extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1FocusLost
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel displayTable = (DefaultTableModel) jTable1.getModel();
-        displayTable.setRowCount(0);
-        String ClassIndex = (String) jComboBox1.getSelectedItem();
-        String option = String.valueOf(ClassIndex);
-        
-        if(option.compareTo("Tất cả sinh viên")==0)
-        {
+        try {
+         
+         //    TODO add your handling code here:
+            DefaultTableModel displayTable = (DefaultTableModel) jTable1.getModel();
             displayTable.setRowCount(0);
-            try {
-                DisPlayAllStudent(displayTable);
-            } catch (RemoteException ex) {
-                Logger.getLogger(quanLyDiem.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NotBoundException ex) {
-                Logger.getLogger(quanLyDiem.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            displayTable.setColumnCount(0);
+            displayTable.addColumn("STT");
+            displayTable.addColumn("Tên sinh viên");
+            displayTable.addColumn("Môn học");
+            displayTable.addColumn("Thường kì");
+            displayTable.addColumn("Giữa kì");
+            displayTable.addColumn("Cuối kì");
+            String tenmon = (String) jComboBox1.getSelectedItem();
+            System.out.println(tenmon);
+            DisPlayScoreBySubject(displayTable, tenmon);
+            System.out.println(tenmon);
+        } catch (RemoteException ex) {
+            Logger.getLogger(quanLyDiem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(quanLyDiem.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else
-        {
-            try {
-                displayTable.setRowCount(0);
-                //           System.out.println("I dont know whats wrong");
-                String Tenlop = option;
-                DisPlayStudentByClass(displayTable, Tenlop);
-            } catch (RemoteException ex) {
-                Logger.getLogger(quanLyDiem.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NotBoundException ex) {
-                Logger.getLogger(quanLyDiem.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //       displayTable.setRowCount(0);
-            //       displayTable.setRowCount(0);
-            //       displayTable.setRowCount(0);
-            //       displayTable.setRowCount(0);
-        }
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            
             // TODO add your handling code here:
             int ID = Integer.parseInt(jTextField1.getText());
+                        //    String[] columnNames = {"STT","Môn học", "Thường kì", "Giữa kì", "Cuối kì"}; 
             DefaultTableModel displayTable = (DefaultTableModel) jTable1.getModel();
             displayTable.setRowCount(0);
+            displayTable.setColumnCount(0);
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             StdManagerInterface stdManagerInterface = (StdManagerInterface) registry.lookup("studentmanager");
+      //      Object[] Column = {"STT","Môn học", "Thường kì", "Giữa kì", "Cuối kì"}; 
+     //       displayTable.addRow(Column);
+            
+            displayTable.addColumn("STT");
+            displayTable.addColumn("Môn học");
+            displayTable.addColumn("Thường kì");
+            displayTable.addColumn("Giữa kì");
+            displayTable.addColumn("Cuối kì");
             SinhVien sv = stdManagerInterface.findSinhVien(ID);
             if(sv != null)
             {
-                Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getTenLop()};
-                displayTable.addRow(Row);
+              DisPlayScoreByID(displayTable,ID);
             }
             else{
                 JOptionPane.showConfirmDialog(null, "Không tìm thấy sinh viên với MSSV " + ID, "Tìm sinh viên", JOptionPane.INFORMATION_MESSAGE);
@@ -375,18 +375,23 @@ public class quanLyDiem extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        // TODO add your handling code here:
+                jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1FocusGained
     
     
     
     
-    private static void loadClassNameIntoCombobox(javax.swing.JComboBox<String> combobox) throws NotBoundException, RemoteException
+    private static void loadSubjectIntoCombobox(javax.swing.JComboBox<String> combobox) throws NotBoundException, RemoteException
     {
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         StdManagerInterface stdManagerInterface = (StdManagerInterface) registry.lookup("studentmanager");
-        List<LopHoc> DSLop = new ArrayList<>();
-        DSLop = stdManagerInterface.getAllLopHoc();
-        for (LopHoc className : DSLop) {
-            combobox.addItem(className.getTenLop());
+        List<MonHoc> DSMon = new ArrayList<>();
+        DSMon = stdManagerInterface.getAllMonHoc();
+        for (MonHoc monHoc : DSMon) {
+            combobox.addItem(monHoc.getTenMh());
         }
     }
     
@@ -463,27 +468,29 @@ public class quanLyDiem extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     
-    private static void DisPlayAllStudent( DefaultTableModel jtable) throws RemoteException, NotBoundException
+//    private static void DisPlayAllStudent( DefaultTableModel jtable) throws RemoteException, NotBoundException
+//    {
+//        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+//        StdManagerInterface stdManagerInterface = (StdManagerInterface) registry.lookup("studentmanager");
+//        List<SinhVien> DsSingVien = stdManagerInterface.getAllSinhVien();
+//        for(SinhVien sv : DsSingVien)
+//        {
+//            Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getTenLop()};
+//            jtable.addRow(Row);
+//           // jtable.addR;
+//        }
+//    }
+     private static void DisPlayScoreBySubject( DefaultTableModel jtable, String tenmon) throws RemoteException, NotBoundException
     {
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         StdManagerInterface stdManagerInterface = (StdManagerInterface) registry.lookup("studentmanager");
-        List<SinhVien> DsSingVien = stdManagerInterface.getAllSinhVien();
-        for(SinhVien sv : DsSingVien)
+        List<Diem> DsDiem= stdManagerInterface.getStudentAndScoreBySubject(tenmon);
+        int i = 1;
+        for(Diem diem : DsDiem)
         {
-            Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getTenLop()};
+            Object[] Row = { i,diem.getTenSV(), diem.getTenMH(), diem.getThuongKi(), diem.getGiuaKi(), diem.getCuoiKi()};
             jtable.addRow(Row);
-           // jtable.addR;
-        }
-    }
-     private static void DisPlayStudentByClass( DefaultTableModel jtable, String tenlop) throws RemoteException, NotBoundException
-    {
-        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-        StdManagerInterface stdManagerInterface = (StdManagerInterface) registry.lookup("studentmanager");
-        List<SinhVien> DsSinhVien = stdManagerInterface.getStudentByClass(tenlop);
-        for(SinhVien sv : DsSinhVien)
-        {
-            Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getTenLop()};
-            jtable.addRow(Row);
+            i++;
         }
     }
      private static void DisPlayStudentID(DefaultTableModel jtable,int id) throws RemoteException, NotBoundException{
@@ -499,4 +506,17 @@ public class quanLyDiem extends javax.swing.JFrame {
          //   panel1.showConfirmDialog(null, "Không tìm thấy sinh viên với MSSV " + studentMssv, "Tìm sinh viên", JOptionPane.INFORMATION_MESSAGE);
         }
      }
+       private static void DisPlayScoreByID( DefaultTableModel jtable, int ID) throws RemoteException, NotBoundException
+    {
+        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+        StdManagerInterface stdManagerInterface = (StdManagerInterface) registry.lookup("studentmanager");
+        List<Diem> DsDiem= stdManagerInterface.getStudentAndScoreByID(ID);
+         int i = 1;
+        for(Diem diem : DsDiem)
+        {
+            Object[] Row = {i, diem.getTenMH(), diem.getThuongKi(), diem.getGiuaKi(), diem.getCuoiKi()};
+            jtable.addRow(Row);
+            i++;
+        }
+    }
 }

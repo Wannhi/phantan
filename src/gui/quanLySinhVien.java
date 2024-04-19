@@ -98,7 +98,7 @@ public class quanLySinhVien extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel2.setBackground(new java.awt.Color(214,217,223,255));
+        panel2.setBackground(new java.awt.Color(96, 215, 103));
         panel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButton2.setBackground(new java.awt.Color(119, 186, 87));
@@ -142,14 +142,14 @@ public class quanLySinhVien extends javax.swing.JFrame {
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-                    jButton6ActionPerformed(evt);
-                } catch (RemoteException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (NotBoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+					jButton6ActionPerformed(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NotBoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -357,32 +357,7 @@ public class quanLySinhVien extends javax.swing.JFrame {
         String ClassIndex = (String) jComboBox1.getSelectedItem();
         String option = String.valueOf(ClassIndex);
         
-        if(option.compareTo("Tất cả sinh viên")==0)
-        {
-            displayTable.setRowCount(0);
-            try {
-                DisPlayAllStudent(displayTable);
-            } catch (RemoteException ex) {
-                Logger.getLogger(quanLySinhVien.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NotBoundException ex) {
-                Logger.getLogger(quanLySinhVien.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else
-        {
-            try {
-                displayTable.setRowCount(0);
-                //           System.out.println("I dont know whats wrong");
-                String Tenlop = option;
-                DisPlayStudentByClass(displayTable, Tenlop);
-            } catch (RemoteException ex) {
-                Logger.getLogger(quanLySinhVien.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NotBoundException ex) {
-                Logger.getLogger(quanLySinhVien.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //       displayTable.setRowCount(0);
-            //       displayTable.setRowCount(0);
-        }
+       
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

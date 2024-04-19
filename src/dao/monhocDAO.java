@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import enity.MonHoc;
+import enity.*;
 
 public class monhocDAO {
 	private Connection connection;

@@ -88,7 +88,7 @@ public class mainFrame extends javax.swing.JFrame {
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(261, 261, 261)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(215, 215, 215))
         );
         panel1Layout.setVerticalGroup(
@@ -99,7 +99,7 @@ public class mainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel2.setBackground(new java.awt.Color(214,217,223,255));
+        panel2.setBackground(new java.awt.Color(96, 215, 103));
         panel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel2.setForeground(new java.awt.Color(221, 221, 211));
 
@@ -181,6 +181,11 @@ public class mainFrame extends javax.swing.JFrame {
         });
 
         jTextField1.setText("Nhập ID sinh viên");
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+        });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -251,13 +256,14 @@ public class mainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLayeredPane2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(14, 14, 14)
                         .addComponent(jLayeredPane3)))
                 .addContainerGap())
         );
@@ -333,7 +339,7 @@ public class mainFrame extends javax.swing.JFrame {
             SinhVien sv = stdManagerInterface.findSinhVien(ID);
             if(sv != null)
             {
-                Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getTenLop()};
+                Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getMaLop()};
                 displayTable.addRow(Row);
             }
             else{
@@ -363,6 +369,11 @@ public class mainFrame extends javax.swing.JFrame {
         quanLySV.show();
         dispose();        
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        // TODO add your handling code here:
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1FocusGained
     
     
     
@@ -442,7 +453,7 @@ public class mainFrame extends javax.swing.JFrame {
         List<SinhVien> DsSingVien = stdManagerInterface.getAllSinhVien();
         for(SinhVien sv : DsSingVien)
         {
-            Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getTenLop()};
+            Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getMaLop()};
             jtable.addRow(Row);
            // jtable.addR;
         }
@@ -464,7 +475,7 @@ public class mainFrame extends javax.swing.JFrame {
         SinhVien sv = stdManagerInterface.findSinhVien(id);
         if(sv != null)
         {
-            Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getTenLop()};
+            Object[] Row = {sv.getMssv(), sv.getTen(), sv.getNamSinh(), sv.getMaLop()};
             jtable.addRow(Row);
         }
         else{

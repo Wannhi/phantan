@@ -29,7 +29,11 @@ public interface StdManagerInterface extends Remote{
     MonHoc findMonHoc(String maMh) throws RemoteException;
     //Tim kiem diem
     Diem findDiem(int mssv) throws RemoteException;
-
+    //boolean addDiem(Diem diem) throws RemoteException;
+    
+    List<Diem> getStudentAndScoreBySubject(String TenMonHoc) throws RemoteException;
+    List<Diem> getStudentAndScoreByID(int mssv) throws RemoteException;
+    
     //Them sinh vien
     boolean addSinhVien(SinhVien sinhvien) throws RemoteException;
     //Them lop hoc
@@ -56,5 +60,10 @@ public interface StdManagerInterface extends Remote{
     boolean deleteMonHoc(String MaMH) throws RemoteException;
     //Xoa diem
     boolean deleteDiem(int mssv) throws RemoteException;
-
+    
+    //updateDiem
+    boolean updateDiem(String cotdiem, float diemmoi ,int mssv, String MaMH) throws RemoteException;
+    
+    //tim diem
+    float getScoreByIDandSubject(int mssv, String tencotDiem ,String maMh) throws RemoteException;
 }

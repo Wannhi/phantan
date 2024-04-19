@@ -9,7 +9,7 @@ public class Server {
             Registry registry = LocateRegistry.createRegistry(1099);
             StdManagerInterface std =  new StdManagerImpl();
             registry.bind("studentmanager", std);
-            System.out.println("Server is runninhg");
+            System.out.println("Server is running");
         } catch (Exception e) {
             e.printStackTrace();
         }

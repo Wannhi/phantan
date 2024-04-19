@@ -4,9 +4,33 @@ package enity;
 import java.io.Serializable;
 
 public class Diem implements Serializable{
+    String tenSV;
+    String TenMH;
     private int mssv;
     private String maMh;
-    private float thuongKi;
+    public Diem(String tenSV, String tenMH, float thuongKi, float giuaKi, float cuoiKi) {
+		super();
+		this.tenSV = tenSV;
+		this.TenMH = tenMH;
+		//this.mssv = mssv;
+	//	this.maMh = maMh;
+		this.thuongKi = thuongKi;
+		this.giuaKi = giuaKi;
+		this.cuoiKi = cuoiKi;
+	}
+	public String getTenSV() {
+		return tenSV;
+	}
+	public void setTenSV(String tenSV) {
+		this.tenSV = tenSV;
+	}
+	public String getTenMH() {
+		return TenMH;
+	}
+	public void setTenMH(String tenMH) {
+		TenMH = tenMH;
+	}
+	private float thuongKi;
     private float giuaKi;
     private float cuoiKi;
     public Diem(int mssv, String maMh, float thuongKi, float giuaKi, float cuoiKi) {
